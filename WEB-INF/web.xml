@@ -9,7 +9,7 @@
 	
 	<servlet>
 		<servlet-name>login</servlet-name>
-		<servlet-class>controllers.LoginController</servlet-class>
+		<servlet-class>com.huangsreservationsystem.controller.servlet.login.LoginController</servlet-class>
 	</servlet>					
 						
 	<servlet-mapping>

@@ -14,17 +14,11 @@ public class Customer implements Serializable {
 	/** Customer first name */
 	private String firstName;
 
-	/** Customer email address */
-	private String emailAddress;
+	/** Customer userName */
+	private String userName;
 
 	/** Customer password */
 	private String password;
-
-	/** Customer day phone */
-	private String dayTimePhone;
-
-	/** Customer evening phone */
-	private String eveningTimePhone;
 
 	private static final String TAB = "    ";
 
@@ -42,10 +36,9 @@ public class Customer implements Serializable {
 	public Customer(Customer customer) {
 		this.lastName = customer.lastName;
 		this.firstName = customer.firstName;
-		this.emailAddress = customer.emailAddress;
+		this.userName = customer.userName;
 		this.password = customer.password;
-		this.dayTimePhone = customer.dayTimePhone;
-		this.eveningTimePhone = customer.eveningTimePhone;
+	
 	}
 
 	/**
@@ -53,14 +46,13 @@ public class Customer implements Serializable {
 	 * @param firstName
 	 * @param emailAddress
 	 */
-	public Customer(String lastName, String firstName, String emailAddress, String password, String dayTimePhone,
+	public Customer(String lastName, String firstName, String userName, String password, String dayTimePhone,
 			String eveningTimePhone) {
 		this.lastName = lastName;
 		this.firstName = firstName;
-		this.emailAddress = emailAddress;
+		this.userName = userName;
 		this.password = password;
-		this.dayTimePhone = dayTimePhone;
-		this.eveningTimePhone = eveningTimePhone;
+
 	}
 
 	/**
@@ -95,14 +87,14 @@ public class Customer implements Serializable {
 	 * @return the emailAddress
 	 */
 	public String getEmailAddress() {
-		return emailAddress;
+		return userName;
 	}
 
 	/**
 	 *  Set the email address.
 	 */
 	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+		this.userName = emailAddress;
 	}
 
 	/**
@@ -119,33 +111,6 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 
-	/**
-	 * @return the dayTimePhone
-	 */
-	public String getDayTimePhone() {
-		return dayTimePhone;
-	}
-
-	/**
-	 * @param dayTimePhone the dayTimePhone to set
-	 */
-	public void setDayTimePhone(String dayTimePhone) {
-		this.dayTimePhone = dayTimePhone;
-	}
-
-	/**
-	 * @return the eveningTimePhone
-	 */
-	public String getEveningTimePhone() {
-		return eveningTimePhone;
-	}
-
-	/**
-	 * @param eveningTimePhone the eveningTimePhone to set
-	 */
-	public void setEveningTimePhone(String eveningTimePhone) {
-		this.eveningTimePhone = eveningTimePhone;
-	}
 
 	/**
 	 * 
@@ -156,15 +121,10 @@ public class Customer implements Serializable {
 			return false;
 		if (firstName == null)
 			return false;
-		if (emailAddress == null)
+		if (userName == null)
 			return false;
 		if (password == null)
 			return false;
-		if (dayTimePhone == null)
-			return false;
-		if (eveningTimePhone == null)
-			return false;
-
 		return true;
 	}
 
@@ -178,15 +138,10 @@ public class Customer implements Serializable {
 			return false;
 		if (!firstName.equals(customer.getFirstName()))
 			return false;
-		if (!emailAddress.equals(customer.getEmailAddress()))
+		if (!userName.equals(customer.getEmailAddress()))
 			return false;
 		if (!password.equals(customer.getPassword()))
 			return false;
-		if (!dayTimePhone.equals(customer.getDayTimePhone()))
-			return false;
-		if (!eveningTimePhone.equals(customer.getEveningTimePhone()))
-			return false;
-
 		return true;
 	}
 
@@ -199,9 +154,8 @@ public class Customer implements Serializable {
 		String returnValue = "";
 
 		returnValue = "Customer ( " + super.toString() + TAB + "lastName = " + this.lastName + TAB + "firstName = "
-				+ this.firstName + TAB + "emailAddress = " + this.emailAddress + TAB + "password = " + this.password
-				+ TAB + "dayTimePhone = " + this.dayTimePhone + TAB + "eveningTimePhone = " + this.eveningTimePhone
-				+ TAB + " )";
+				+ this.firstName + TAB + "emailAddress = " + this.userName + TAB + "password = " + this.password
+				+ TAB + "dayTimePhone = " +  TAB + "eveningTimePhone = " + TAB + " )";
 
 		return returnValue;
 	}
@@ -211,17 +165,15 @@ public class Customer implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		
-		result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		result = prime * result
-				+ ((emailAddress == null) ? 0 : emailAddress.hashCode());
+				+ ((userName == null) ? 0 : userName.hashCode());
 		result = prime * result
 				+ ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result
 				+ ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
-		result = prime * result
-				+ ((dayTimePhone == null) ? 0 : dayTimePhone.hashCode());
 		return result;
 	}
 }
