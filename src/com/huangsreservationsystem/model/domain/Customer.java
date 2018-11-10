@@ -14,11 +14,14 @@ public class Customer implements Serializable {
 	/** Customer first name */
 	private String firstName;
 
-	/** Customer userName */
-	private String userName;
-
 	/** Customer password */
 	private String password;
+
+	/** Customer birthday */
+	private String birthday;
+
+	/** Customer userName */
+	private String userName;
 
 	private static final String TAB = "    ";
 
@@ -38,21 +41,23 @@ public class Customer implements Serializable {
 		this.firstName = customer.firstName;
 		this.userName = customer.userName;
 		this.password = customer.password;
-	
+		this.birthday = customer.birthday;
+
 	}
 
 	/**
 	 * @param lastName
 	 * @param firstName
-	 * @param emailAddress
+	 * @param birthday
+	 * @param userName
 	 */
-	public Customer(String lastName, String firstName, String userName, String password, String dayTimePhone,
-			String eveningTimePhone) {
+	public Customer(String lastName, String firstName, String userName, String password, String Birthday,
+			String birthday) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.userName = userName;
 		this.password = password;
-
+		this.birthday = birthday;
 	}
 
 	/**
@@ -84,20 +89,6 @@ public class Customer implements Serializable {
 	}
 
 	/**
-	 * @return the emailAddress
-	 */
-	public String getEmailAddress() {
-		return userName;
-	}
-
-	/**
-	 *  Set the email address.
-	 */
-	public void setEmailAddress(String emailAddress) {
-		this.userName = emailAddress;
-	}
-
-	/**
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -111,69 +102,90 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 
-
 	/**
 	 * 
 	 * @return true if non of those are null
 	 */
 	public boolean validate() {
-		if (lastName == null)
+		if (lastName == null) {
 			return false;
-		if (firstName == null)
+		}
+		if (firstName == null) {
 			return false;
-		if (userName == null)
+		}
+		if (userName == null) {
 			return false;
-		if (password == null)
+		}
+		if (password == null) {
 			return false;
+		}
+		if (birthday == null) {
+			return false;
+		}
 		return true;
 	}
 
 	/**
 	 * 
-	 * @param Customer
-	 * @return
+	 * @param Customer Validate all the parameter of the customer
 	 */
 	public boolean equals(Customer customer) {
-		if (!lastName.equals(customer.getLastName()))
+		if (!lastName.equals(customer.getLastName())) {
 			return false;
-		if (!firstName.equals(customer.getFirstName()))
+		}if (!firstName.equals(customer.getFirstName())) {
 			return false;
-		if (!userName.equals(customer.getEmailAddress()))
+		}if (!userName.equals(customer.getUserName())) {
 			return false;
-		if (!password.equals(customer.getPassword()))
+		}if (!password.equals(customer.getPassword())) {
 			return false;
+		}if(!userName.equals(customer.getUserName())) {
+			return false;
+		}
+
 		return true;
 	}
 
 	/**
 	 * change the customer object into a string.
+	 * 
 	 * @return String
 	 */
 	public String toString() {
 
 		String returnValue = "";
 
-		returnValue = "Customer ( " + super.toString() + TAB + "lastName = " + this.lastName + TAB + "firstName = "
-				+ this.firstName + TAB + "emailAddress = " + this.userName + TAB + "password = " + this.password
-				+ TAB + "dayTimePhone = " +  TAB + "eveningTimePhone = " + TAB + " )";
+		returnValue = "Welcome to Huangs Hotel Reservation System!!!!!!!!!!!!!!!!!"
+				+ "Customer " + super.toString() + TAB + this.lastName + TAB + this.firstName;
 
 		return returnValue;
 	}
-	
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		final int prime = 7;
 		int result = 1;
-		
+
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-		result = prime * result
-				+ ((userName == null) ? 0 : userName.hashCode());
-		result = prime * result
-				+ ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result
-				+ ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result
-				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }

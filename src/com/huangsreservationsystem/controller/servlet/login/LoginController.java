@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.huangsreservationsystem.model.domain.Customer;
+
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 
@@ -25,18 +27,45 @@ public class LoginController extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+		// get the input parameters
+
+		// process the data
+
+		// generate a response
+
+		Customer customer = extractLoginInfo(req);
 		
-		//get the input parameters
+		if(customer != null) {
+			res.sendRedirect("welcome.html");
+			//view(req,res);
+		}else {
+			res.sendRedirect("loginError.html");
+		}
 		
-		//process the data
 		
-		//generate a response
-		
-		doPost(req, res);
+	}
+
+	private Customer extractLoginInfo(HttpServletRequest req) {
+		Customer customer = new Customer();
+		String userName = req.getParameter("username");
+		String password = req.getParameter("password");
+
+		if ((userName.equals("jayhuang")) && (password.equals("123456"))) {
+			customer.setUserName(userName);
+			customer.setPassword(password);
+		} else {
+			customer = null;
+		}
+		return customer;
+
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		doGet(req,res);
+	}
+	
+//	public void view(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 //		res.setContentType("text/html");
 //		PrintWriter out = res.getWriter();
 //		out.print("<html>");
@@ -47,7 +76,5 @@ public class LoginController extends HttpServlet {
 //
 //		out.print("</body>");
 //		out.print("</html>");
-		
-		
-	}
+//	}
 }
