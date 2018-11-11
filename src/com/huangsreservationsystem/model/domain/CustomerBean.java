@@ -23,6 +23,9 @@ public class CustomerBean implements Serializable {
 	/** Customer userName */
 	private String userName;
 	
+	/**Card type*/
+	private String cardType;
+	
 	/**Customer credit card number*/
 	private String cardNumber;
 	
@@ -51,6 +54,7 @@ public class CustomerBean implements Serializable {
 		this.userName = customer.userName;
 		this.password = customer.password;
 		this.birthday = customer.birthday;
+		this.cardType = customer.cardType;
 		this.cardNumber = customer.cardNumber;
 		this.expDate = customer.expDate;
 		this.cvv = customer.cvv;
@@ -64,12 +68,13 @@ public class CustomerBean implements Serializable {
 	 * @param userName
 	 */
 	public CustomerBean(String lastName, String firstName, String userName, String password, 
-			String birthday,String cardNumber,String expDate,String cvv) {
+			String birthday,String cardType,String cardNumber,String expDate,String cvv) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.userName = userName;
 		this.password = password;
 		this.birthday = birthday;
+		this.cardType = cardType;
 		this.cardNumber = cardNumber;
 		this.expDate = expDate;
 		this.cvv = cvv;
@@ -151,6 +156,23 @@ public class CustomerBean implements Serializable {
 		this.userName = userName;
 	}
 
+	/**
+	 * 
+	 * @return card type
+	 */
+	public String getCardType() {
+		return cardType;
+	}
+
+	/**
+	 * 
+	 * @param cardType
+	 * set the card type
+	 */
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
+	}
+	
 	/**
 	 * 
 	 * @return card number
@@ -238,6 +260,8 @@ public class CustomerBean implements Serializable {
 			return false;
 		}if (!password.equals(customer.getPassword())) {
 			return false;
+		}if(!cardType.equals(customer.getCardType())) {
+			return false;
 		}if(!cardNumber.equals(customer.getCardNumber())) {
 			return false;
 		}if(!expDate.equals(customer.getExpDate())){
@@ -276,6 +300,8 @@ public class CustomerBean implements Serializable {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
+
+
 
 
 }

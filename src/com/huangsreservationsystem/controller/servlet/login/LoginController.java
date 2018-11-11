@@ -29,6 +29,8 @@ public class LoginController extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("Inside the LoginController");
+		
 		LoginBean loginBean = new LoginBean();
 
 		String userName = req.getParameter("username");
