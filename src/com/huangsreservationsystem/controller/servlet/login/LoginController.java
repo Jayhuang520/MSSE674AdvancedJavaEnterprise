@@ -1,14 +1,13 @@
 package com.huangsreservationsystem.controller.servlet.login;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.huangsreservationsystem.business.LoginManager;
 import com.huangsreservationsystem.model.domain.CustomerBean;
@@ -54,15 +53,16 @@ public class LoginController extends HttpServlet {
 		
 		// generate a response
 		if(customer != null) {
-			res.sendRedirect("welcome.html");
+//			res.sendRedirect("welcome.html");
 			
-//			req.setAttribute("customer", customer);
-//			getServletContext().getRequestDispatcher("/home").forward(req, res);
+			req.setAttribute("customer", customer);
+			
+			getServletContext().getRequestDispatcher("/welcome").forward(req, res);
 			
 //			res.sendRedirect("welcome.html");
 		}else {
-			//getServletContext().getRequestDispatcher("/error").forward(req, res);
-			res.sendRedirect("loginError.html");
+			getServletContext().getRequestDispatcher("/error").forward(req, res);
+			//res.sendRedirect("loginError.html");
 		}
 	}
 	

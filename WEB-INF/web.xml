@@ -10,7 +10,11 @@
 	<servlet>
 		<servlet-name>login</servlet-name>
 		<servlet-class>com.huangsreservationsystem.controller.servlet.login.LoginController</servlet-class>
-		<!-- <servlet-class>com.huangsreservationsystem.controller.servlet.login.homeServlet</servlet-class> -->
+	</servlet>
+	
+	<servlet>
+		<servlet-name>WelcomeServlet</servlet-name>
+		<servlet-class>com.huangsreservationsystem.controller.servlet.login.WelcomeServlet</servlet-class>
 	</servlet>					
 						
 	<servlet>
@@ -24,8 +28,13 @@
 	</servlet-mapping>
 	
 	<servlet-mapping>
+		<servlet-name>WelcomeServlet</servlet-name>
+		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
 		<servlet-name>error</servlet-name>
-		<url-pattern>/error</url-pattern>
+		<url-pattern>/view/login/error</url-pattern>
 	</servlet-mapping>
 						
 </web-app>
