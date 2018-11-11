@@ -2,7 +2,7 @@ package com.huangsreservationsystem.model.domain;
 
 import java.io.Serializable;
 
-public class Customer implements Serializable {
+public class CustomerBean implements Serializable {
 	/**
 	* 
 	*/
@@ -28,7 +28,7 @@ public class Customer implements Serializable {
 	/**
 	 * Default constructor
 	 */
-	public Customer() {
+	public CustomerBean() {
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class Customer implements Serializable {
 	 * 
 	 * @param customer
 	 */
-	public Customer(Customer customer) {
+	public CustomerBean(CustomerBean customer) {
 		this.lastName = customer.lastName;
 		this.firstName = customer.firstName;
 		this.userName = customer.userName;
@@ -51,7 +51,7 @@ public class Customer implements Serializable {
 	 * @param birthday
 	 * @param userName
 	 */
-	public Customer(String lastName, String firstName, String userName, String password, String Birthday,
+	public CustomerBean(String lastName, String firstName, String userName, String password, String Birthday,
 			String birthday) {
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -127,9 +127,9 @@ public class Customer implements Serializable {
 
 	/**
 	 * 
-	 * @param Customer Validate all the parameter of the customer
+	 * @param CustomerBean Validate all the parameter of the customer
 	 */
-	public boolean equals(Customer customer) {
+	public boolean equals(CustomerBean customer) {
 		if (!lastName.equals(customer.getLastName())) {
 			return false;
 		}if (!firstName.equals(customer.getFirstName())) {

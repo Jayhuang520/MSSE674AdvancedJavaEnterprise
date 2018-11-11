@@ -8,8 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.huangsreservationsystem.model.domain.Customer;
+import com.huangsreservationsystem.business.LoginManager;
+import com.huangsreservationsystem.model.domain.CustomerBean;
+import com.huangsreservationsystem.model.domain.LoginBean;
 
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
@@ -26,55 +29,41 @@ public class LoginController extends HttpServlet {
 		super();
 	}
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		// get the input parameters
-
-		// process the data
-
-		// generate a response
-
-		Customer customer = extractLoginInfo(req);
-		
-		if(customer != null) {
-			res.sendRedirect("welcome.html");
-			//view(req,res);
-		}else {
-			res.sendRedirect("loginError.html");
-		}
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		LoginBean loginBean = new LoginBean();
 		
 		
-	}
-
-	private Customer extractLoginInfo(HttpServletRequest req) {
-		Customer customer = new Customer();
 		String userName = req.getParameter("username");
 		String password = req.getParameter("password");
 
-		if ((userName.equals("jayhuang")) && (password.equals("123456"))) {
-			customer.setUserName(userName);
-			customer.setPassword(password);
-		} else {
-			customer = null;
+		loginBean.setUserName(userName);
+		loginBean.setPassword(password);
+		
+		CustomerBean customer = LoginManager.authenticateLogin(loginBean);
+		
+		// process the data
+		//Put the customer bean into the request mode
+		//req.setAttribute("customer", customer);
+		
+		//Place the customer object in the session mode
+//		HttpSession session = req.getSession();
+//		session.setAttribute("customer", loginBean);
+//		
+//		req.getSession().setAttribute("customer", loginBean);
+		
+		// generate a response
+		if(customer != null) {
+			res.sendRedirect("welcome.html");
+			
+//			req.setAttribute("customer", customer);
+//			getServletContext().getRequestDispatcher("/home").forward(req, res);
+			
+//			res.sendRedirect("welcome.html");
+		}else {
+			//getServletContext().getRequestDispatcher("/error").forward(req, res);
+			res.sendRedirect("loginError.html");
 		}
-		return customer;
-
-	}
-
-	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		doGet(req,res);
 	}
 	
-//	public void view(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-//		res.setContentType("text/html");
-//		PrintWriter out = res.getWriter();
-//		out.print("<html>");
-//		out.print("<head><title>Acme login</title></head>");
-//		out.print("<body>");
-//
-//		out.print("login Controller");
-//
-//		out.print("</body>");
-//		out.print("</html>");
-//	}
 }
