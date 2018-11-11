@@ -19,6 +19,6 @@ public class UpdateServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res)throws ServletException, IOException {
 		//TODO:replace this with a logger
 		System.out.println("Inside the doPost of the update Servlet");
-		res.sendRedirect("welcome.html");
+		res.sendRedirect("AvailableRoom.html");
 	}
 }

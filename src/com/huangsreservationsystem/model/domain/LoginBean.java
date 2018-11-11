@@ -12,6 +12,11 @@ public class LoginBean implements Serializable{
 	public LoginBean() {
 	}
 	
+	public LoginBean(String userName,String password) {
+		this.userName = userName;
+		this.password = password;
+	}
+	
 	/**Username for login*/
 	private String userName;
 	
