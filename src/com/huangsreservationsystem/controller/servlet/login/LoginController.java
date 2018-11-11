@@ -2,12 +2,12 @@ package com.huangsreservationsystem.controller.servlet.login;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.huangsreservationsystem.business.LoginManager;
 import com.huangsreservationsystem.model.domain.CustomerBean;
@@ -28,42 +28,38 @@ public class LoginController extends HttpServlet {
 		super();
 	}
 
-
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		LoginBean loginBean = new LoginBean();
-		
-		
+
 		String userName = req.getParameter("username");
 		String password = req.getParameter("password");
 
 		loginBean.setUserName(userName);
 		loginBean.setPassword(password);
-		
+
+		// process the data
 		CustomerBean customer = LoginManager.authenticateLogin(loginBean);
 		
-		// process the data
-		//Put the customer bean into the request mode
-		//req.setAttribute("customer", customer);
+		HttpSession session = req.getSession();
 		
-		//Place the customer object in the session mode
-//		HttpSession session = req.getSession();
-//		session.setAttribute("customer", loginBean);
-//		
-//		req.getSession().setAttribute("customer", loginBean);
+		//Using the http session accept request from multiple customer
+
+		session.setAttribute("customer", customer);
 		
 		// generate a response
-		if(customer != null) {
-//			res.sendRedirect("welcome.html");
-			
-			req.setAttribute("customer", customer);
-			
+		if (customer != null) {
+			/*
+			 * If the customer is not null, that means the username and password match
+			 * with an existing customer,redirct them to the welcome page of the website.
+			 */
 			getServletContext().getRequestDispatcher("/welcome").forward(req, res);
-			
-//			res.sendRedirect("welcome.html");
-		}else {
+
+		} else {
+			/*
+			 * If the customer object is null, redirect them to the error page.
+			 */
 			getServletContext().getRequestDispatcher("/error").forward(req, res);
-			//res.sendRedirect("loginError.html");
 		}
 	}
-	
+
 }

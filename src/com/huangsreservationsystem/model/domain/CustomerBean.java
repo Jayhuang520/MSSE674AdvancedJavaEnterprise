@@ -22,7 +22,16 @@ public class CustomerBean implements Serializable {
 
 	/** Customer userName */
 	private String userName;
-
+	
+	/**Customer credit card number*/
+	private String cardNumber;
+	
+	/**Customer credit card expiration date*/
+	private String expDate;
+	
+	/**Customer credit card cvv*/
+	private String cvv;
+	
 	private static final String TAB = "    ";
 
 	/**
@@ -42,6 +51,9 @@ public class CustomerBean implements Serializable {
 		this.userName = customer.userName;
 		this.password = customer.password;
 		this.birthday = customer.birthday;
+		this.cardNumber = customer.cardNumber;
+		this.expDate = customer.expDate;
+		this.cvv = customer.cvv;
 
 	}
 
@@ -51,13 +63,16 @@ public class CustomerBean implements Serializable {
 	 * @param birthday
 	 * @param userName
 	 */
-	public CustomerBean(String lastName, String firstName, String userName, String password, String Birthday,
-			String birthday) {
+	public CustomerBean(String lastName, String firstName, String userName, String password, 
+			String birthday,String cardNumber,String expDate,String cvv) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.userName = userName;
 		this.password = password;
 		this.birthday = birthday;
+		this.cardNumber = cardNumber;
+		this.expDate = expDate;
+		this.cvv = cvv;
 	}
 
 	/**
@@ -104,6 +119,91 @@ public class CustomerBean implements Serializable {
 
 	/**
 	 * 
+	 * @return birthday
+	 */
+	public String getBirthday() {
+		return birthday;
+	}
+
+	/**
+	 * 
+	 * @param birthday
+	 * Set the birthday
+	 */
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	/**
+	 * 
+	 * @return username
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * 
+	 * @param userName
+	 * set username
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * 
+	 * @return card number
+	 */
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	/**
+	 * 
+	 * @param cardNumber
+	 * set the card number
+	 */
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	/**
+	 * 
+	 * @return credit card expiration date
+	 */
+	public String getExpDate() {
+		return expDate;
+	}
+
+	/**
+	 * 
+	 * @param expDate
+	 * Set the expiration date
+	 */
+	public void setExpDate(String expDate) {
+		this.expDate = expDate;
+	}
+
+	/**
+	 * 
+	 * @return credit card cvv
+	 */
+	public String getCvv() {
+		return cvv;
+	}
+
+	/**
+	 * 
+	 * @param cvv
+	 * set the credit card cvv
+	 */
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
+	}
+	
+	/**
+	 * 
 	 * @return true if non of those are null
 	 */
 	public boolean validate() {
@@ -138,7 +238,11 @@ public class CustomerBean implements Serializable {
 			return false;
 		}if (!password.equals(customer.getPassword())) {
 			return false;
-		}if(!userName.equals(customer.getUserName())) {
+		}if(!cardNumber.equals(customer.getCardNumber())) {
+			return false;
+		}if(!expDate.equals(customer.getExpDate())){
+			return false;
+		}if(!cvv.equals(customer.getCvv())) {
 			return false;
 		}
 
@@ -173,19 +277,5 @@ public class CustomerBean implements Serializable {
 		return result;
 	}
 
-	public String getBirthday() {
-		return birthday;
-	}
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 }
